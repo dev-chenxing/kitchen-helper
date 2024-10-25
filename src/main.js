@@ -10,6 +10,8 @@ loadSprite("steel", "/sprites/steel.png");
 loadSprite("door", "/sprites/door.png");
 loadSprite("meat", "/sprites/meat.png");
 loadSprite("bean", "/sprites/bean.png");
+loadSprite("chefhatlarge", "/sprites/chefhatlarge.png");
+loadSprite("chefhatsmall", "/sprites/chefhatsmall.png");
 loadFont("刀隶体", "/fonts/AlimamaDaoLiTi.ttf");
 
 scene("main", levelIdx => {
@@ -19,7 +21,8 @@ scene("main", levelIdx => {
   const characters = {
     a: {
       sprite: "bag",
-      msg: "新来的厨房帮工是吗？帮忙煮锅肉汤。"
+      msg: "新来的厨房帮工是吗？帮忙煮锅肉汤。",
+      id: "chef"
     },
     b: {
       sprite: "ghosty",
@@ -66,13 +69,18 @@ scene("main", levelIdx => {
     wildcardTile(ch) {
       const char = characters[ch];
       if (char) {
-        return [sprite(char.sprite), area(), body({ isStatic: true }), anchor("center"), "character", { msg: char.msg }];
+        return [sprite(char.sprite), area(), body({ isStatic: true }), anchor("center"), char.id || "character", { msg: char.msg }];
       }
     }
   });
 
   // get the player game obj by tag
   const player = level.get("player")[0];
+  player.add([pos(0, -16), sprite("chefhatlarge"), anchor("bot")])
+
+  // get chef bag by tag
+  const chef = level.get("chef")[0]
+  chef.add([pos(12, -18), sprite("chefhatsmall"), anchor("bot")])
 
   function addDialog() {
     const h = 160;

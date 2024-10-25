@@ -1,5 +1,5 @@
-- [ ] asset: chef hat
-- [ ] graphics: bean and ghosty with chef hat
+- [x] asset: chef hat
+- [x] graphics: bean and ghosty with chef hat
 - [ ] asset: floor, wall, wall_left, wall_right, wall_bottomleft, wall_bottomright, wall_top, wall_bottom
 - [ ] graphics: sprites atlas
 - [ ] asset: pot
